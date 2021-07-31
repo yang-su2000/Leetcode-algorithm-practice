@@ -1,5 +1,5 @@
 # Leetcode-algorithm-practice
-Favorite leetcode practice question optimized (in c++)
+Favorite leetcode interview questions optimized in C++
 
 ### Most Frequent
 - [反转链表](reverseLinkedList.cpp)
@@ -9,5 +9,11 @@ Favorite leetcode practice question optimized (in c++)
 - [两数之和](twoSum.cpp)
 - [合并有序链表](mergeSortedLinkedList.cpp)
 - [跳台阶](fibo_jumpFloor.cpp)
-- [子数组的最大累加和问题](minOperations_toGet_subsequence)
-- [最长无重复子数组]()
+- [子数组的最大累加和问题](maxSumSubArray.cpp)
+- [最长无重复子数组](longest_uniqueSubArray.cpp)
+
+### Mid
+- [二叉树中所有距离为 K 的结点](findNodeInBst_withDistanceK.cpp)
+
+### Hard
+- [得到子序列的最少操作次数](minOperations_toGet_subsequence.cpp)
