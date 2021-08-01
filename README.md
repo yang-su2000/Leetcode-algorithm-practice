@@ -14,7 +14,6 @@ Favorite leetcode interview questions optimized in C++
 
 ### Mid
 - [二叉树中所有距离为 K 的结点](findNodeInBst_withDistanceK.cpp)
-- [可以工作的最大周数](maxDays_toWork.cpp)
 
 ### Hard
 - [得到子序列的最少操作次数](minOperations_toGet_subsequence.cpp)
