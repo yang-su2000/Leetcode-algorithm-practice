@@ -11,9 +11,15 @@ Favorite leetcode interview questions optimized in C++
 - [跳台阶](fibo_jumpFloor.cpp)
 - [子数组的最大累加和问题](maxSumSubArray.cpp)
 - [最长无重复子数组](longest_uniqueSubArray.cpp)
+- [最长递增子序列](LIS.cpp)
 
 ### Mid
+- [最短无序连续子数组](findUnsortedSubarray.cpp)
+- [最长回文子序列](longestPalindromeSubstring.cpp)
+- [网络延迟时间](Dijsktra.cpp)
 - [二叉树中所有距离为 K 的结点](findNodeInBst_withDistanceK.cpp)
+- [有效三角形的个数](ValidTriangle.cpp)
+- [找到最终的安全状态](findCycle.cpp)
 
 ### Hard
 - [得到子序列的最少操作次数](minOperations_toGet_subsequence.cpp)
