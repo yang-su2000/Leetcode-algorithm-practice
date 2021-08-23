@@ -14,6 +14,7 @@ Favorite leetcode interview questions optimized in C++
 - [最长递增子序列](LIS.cpp)
 
 ### Mid
+- [三数之和](threeSum.cpp)[*python*](threeSum.py)
 - [最短无序连续子数组](findUnsortedSubarray.cpp)
 - [最长回文子序列](longestPalindromeSubstring.cpp)
 - [网络延迟时间](Dijsktra.cpp)
@@ -22,4 +23,8 @@ Favorite leetcode interview questions optimized in C++
 - [找到最终的安全状态](findCycle.cpp)
 
 ### Hard
+- [寻找两个正序数组的中位数](findMedianSortedArrays.cpp)
 - [得到子序列的最少操作次数](minOperations_toGet_subsequence.cpp)
+
+### Special
+- [数字 1 的个数](countDigitOne.cpp)
