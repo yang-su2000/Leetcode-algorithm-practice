@@ -10,7 +10,7 @@ class Solution:
         midi = (li + ri) // 2
         midj = (lj + rj) // 2
         cur = m[midi][midj]
-        print(li, ri, lj, rj, ':', midi, midj, cur)
+        # print(li, ri, lj, rj, ':', midi, midj, cur)
         if cur == target:
             return True
         elif cur > target:
