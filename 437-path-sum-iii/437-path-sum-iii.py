@@ -7,21 +7,21 @@
 class Solution:
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
         self.ans = 0
-        self.rec(root, targetSum)
+        self.d = defaultdict(int)
+        self.rec(root, 0, targetSum)
         return self.ans
     
-    def rec(self, root, s):
+    def rec(self, root, cur, s):
         if not root:
-            return defaultdict(lambda: 0)
-        l, r = self.rec(root.left, s), self.rec(root.right, s)
-        ans = defaultdict(lambda: 0)
-        for k, v in l.items():
-            ans[k + root.val] += v
-        for k, v in r.items():
-            ans[k + root.val] += v
-        ans[root.val] += 1
-        if s in ans:
-            self.ans += ans[s]
-        # print(ans.items())
-        return ans
+            return
+        cur += root.val
+        if cur == s:
+            self.ans += 1
+        # cur = cur prefix sum, ? = prev prefix sum, want the count for (cur - ? = s)
+        # hence ? = cur - s, ? is the consecutive sum for any inner path
+        self.ans += self.d[cur - s]
+        self.d[cur] += 1
+        self.rec(root.left, cur, s)
+        self.rec(root.right, cur, s)
+        self.d[cur] -= 1
         
