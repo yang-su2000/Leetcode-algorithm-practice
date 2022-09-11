@@ -12,7 +12,9 @@ class Solution:
         if not root:
             return 0
         l = self.getHeight(root.left)
+        if l == -1:
+            return -1
         r = self.getHeight(root.right)
-        if l == -1 or r == -1 or abs(l - r) > 1:
+        if r == -1 or abs(l - r) > 1:
             return -1
         return max(l, r) + 1
