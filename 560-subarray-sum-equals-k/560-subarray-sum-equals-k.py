@@ -8,7 +8,7 @@ class Solution:
             # want to find ? = k, cur - ? = prev, so find cur - k = prev
             if sum - k in d:
                 ans += d[sum - k]
-            if sum in d:
+            if sum in d: # add myself afterwards, otherwise cur - ? = cur gives empty []
                 d[sum] += 1
             else:
                 d[sum] = 1
