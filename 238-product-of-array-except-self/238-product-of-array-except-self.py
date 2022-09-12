@@ -4,7 +4,6 @@ class Solution:
         ans = [1] * n
         for i in range(1, n):
             ans[i] = ans[i-1] * nums[i-1]
-        print(ans)
         cur = 1
         for i in range(n-1, -1, -1):
             ans[i] *= cur
