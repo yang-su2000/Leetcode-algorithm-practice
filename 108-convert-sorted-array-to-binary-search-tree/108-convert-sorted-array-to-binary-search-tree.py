@@ -11,9 +11,6 @@ class Solution:
         return root
     
     def rec(self, nums, root, l, r):
-        if l == r:
-            root.val = nums[l]
-            return
         mid = (l + r) // 2
         root.val = nums[mid]
         if l <= mid - 1:
