@@ -11,14 +11,14 @@ class Solution:
         return self.ans
     
     def rec(self, root, s):
+        if not root:
+            return
         if root.val in s:
             s.remove(root.val)
         else:
             s.add(root.val)
-        if root.left:
-            self.rec(root.left, s)
-        if root.right:
-            self.rec(root.right, s)
+        self.rec(root.left, s)
+        self.rec(root.right, s)
         if not root.left and not root.right:
             self.ans += (len(s) <= 1)
         if root.val in s:
