@@ -1,28 +1,34 @@
 class Solution:
     def numBusesToDestination(self, routes: List[List[int]], source: int, target: int) -> int:
-        n = max([stop for route in routes for stop in route]) + 1
-        edges = [[] for _ in range(n)]
-        visits = [False] * n
-        for i, route in enumerate(routes):
-            for node in route:
-                edges[node].append(i)
-        if source >= n or target >= n or not edges[target]:
-            return -1
-        curs = [source]
-        visits[source] = True
-        dist = 0
-        while curs:
-            nxts = []
-            for node in curs:
-                if node == target:
+        if source == target:
+            return 0
+        routes = [set(route) for route in routes] # turn each bus index into a set
+        G = defaultdict(set) # the node is the bus index
+        for i, r1 in enumerate(routes):
+            for j in range(i+1, len(routes)):
+                r2 = routes[j]
+                if r1 & r2: # check if set intersection non-empty
+                    G[i].add(j)
+                    G[j].add(i)
+        # print(G.items())
+        seen, targets = set(), set()
+        for node, route in enumerate(routes):
+            if source in route:
+                seen.add(node)
+            if target in route:
+                targets.add(node)
+        cur = [node for node in seen]
+        dist = 1
+        while cur:
+            nxt = []
+            for i in cur:
+                if i in targets:
                     return dist
-                for bus_idx in edges[node]: # take bus_idx
-                    for node2 in routes[bus_idx]:
-                        if visits[node2]:
-                            continue
-                        nxts.append(node2)
-                        visits[node2] = True
+                for j in G[i]:
+                    if j not in seen:
+                        seen.add(j)
+                        nxt.append(j)
+            cur = nxt
             dist += 1
-            curs = nxts
         return -1
     
