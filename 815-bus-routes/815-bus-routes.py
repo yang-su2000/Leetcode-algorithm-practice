@@ -17,18 +17,13 @@ class Solution:
                 seen.add(node)
             if target in route:
                 targets.add(node)
-        cur = [node for node in seen]
-        dist = 1
-        while cur:
-            nxt = []
-            for i in cur:
-                if i in targets:
-                    return dist
-                for j in G[i]:
-                    if j not in seen:
-                        seen.add(j)
-                        nxt.append(j)
-            cur = nxt
-            dist += 1
+        cur = [(node, 1) for node in seen]
+        for i, dist in cur:
+            if i in targets:
+                return dist
+            for j in G[i]:
+                if j not in seen:
+                    seen.add(j)
+                    cur.append((j, dist + 1))
         return -1
     
