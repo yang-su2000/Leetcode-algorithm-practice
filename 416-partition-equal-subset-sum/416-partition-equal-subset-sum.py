@@ -3,14 +3,10 @@ class Solution:
         target = sum(nums)
         if target % 2:
             return False
-        target /= 2
-        s = set()
+        target //= 2
+        dp = [False] * (target + 1)
+        dp[0] = True
         for i in nums:
-            for j in list(s):
-                if i + j <= target:
-                    s.add(i + j)
-            if i <= target:
-                s.add(i)
-            if target in s:
-                return True
-        return False
+            for j in range(target, i-1, -1):
+                dp[j] = dp[j] or dp[j - i]
+        return dp[-1]
