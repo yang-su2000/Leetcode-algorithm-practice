@@ -25,38 +25,33 @@ class Solution:
         self.childs[parent] = s
     
     def alienOrder(self, words: List[str]) -> str:
-        self.rules = defaultdict(set) # parent -> child
-        self.invalid = False
-        for i in range(1, len(words)):
-            self.add_rule(words[i-1], words[i])
-        if self.invalid:
-            return ''
+        A = defaultdict(set) # parent -> set(child)
+        in_deg = defaultdict(int)
         for word in words:
             for c in word:
-                if c not in self.rules:
-                    self.rules[c] = set()
-        print(self.rules.items())
-        self.childs = defaultdict(set)
-        for parent, childs in self.rules.items():
-            self.add_child(parent, list(childs))
-        print(self.childs.items())
+                in_deg[c] = 0
+        for i in range(1, len(words)):
+            done = False
+            for c1, c2 in zip(words[i-1], words[i]):
+                if c1 != c2:
+                    done = True
+                    if c2 not in A[c1]:
+                        A[c1].add(c2)
+                        in_deg[c2] += 1
+                    break
+            if not done and len(words[i-1]) > len(words[i]):
+                    return ''
         ans = []
-        while self.childs:
-            cur = []
-            childs2 = defaultdict(set)
-            for parent, childs in self.childs.items():
-                if not childs:
-                    cur.append(parent)
-                else:
-                    childs2[parent] = childs
-            if not cur:
-                return ''
-            for parent, childs in childs2.items():
-                for c in cur:
-                    if c in childs:
-                         childs.remove(c)
-            self.childs = childs2
-            print(cur)
-            ans.extend(cur)
-        return ''.join(ans[::-1])
+        q = deque([c for c in in_deg if in_deg[c] == 0])
+        while q:
+            c1 = q.popleft()
+            ans.append(c1)
+            for c2 in A[c1]:
+                in_deg[c2] -= 1
+                if in_deg[c2] == 0:
+                    q.append(c2)
+        if len(ans) != len(in_deg):
+            return ''
+        return ''.join(ans)
+                        
                 
