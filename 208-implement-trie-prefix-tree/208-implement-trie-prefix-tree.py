@@ -3,12 +3,11 @@ class Trie:
     def __init__(self):
         self.val = False
         self.has_child = False
-        self.children = [None] * 26
+        self.children = defaultdict(Trie)
 
     def insert(self, word: str) -> None:
         cur = self
-        for c in word:
-            i = ord(c) - ord('a')
+        for i in word:
             if not cur.children[i]:
                 cur.children[i] = Trie()
             cur.has_child = True
@@ -17,8 +16,7 @@ class Trie:
 
     def search(self, word: str) -> bool:
         cur = self
-        for c in word:
-            i = ord(c) - ord('a')
+        for i in word:
             if not cur.children[i]:
                 return False
             cur = cur.children[i]
@@ -26,8 +24,7 @@ class Trie:
 
     def startsWith(self, prefix: str) -> bool:
         cur = self
-        for c in prefix:
-            i = ord(c) - ord('a')
+        for i in prefix:
             if not cur.children[i]:
                 return False
             cur = cur.children[i]
