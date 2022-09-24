@@ -11,7 +11,7 @@ class Solution:
                 ls[-1] = ls[-1] * 10 + int(i)
             else:
                 ls.append(int(i))
-        print(ls)
+        # print(ls)
         ls2 = []
         prior = set(['*','/'])
         for i in ls:
@@ -28,7 +28,7 @@ class Solution:
                     ls2.append(i)
             else:
                 ls2.append(i)
-        print(ls2)
+        # print(ls2)
         ans = ls2[0]
         for i in range(1, len(ls2), 2):
             if ls2[i] == '+':
