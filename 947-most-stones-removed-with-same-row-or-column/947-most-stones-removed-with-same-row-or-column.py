@@ -12,8 +12,7 @@ class Union:
         i, j = self.find(i), self.find(j)
         if self.rank[j] < self.rank[i]:
             i, j = j, i
-        if self.rank[i] == self.rank[j]:
-            self.rank[j] += 1
+        self.rank[j] += 1
         self.parent[i] = j
 
 class Solution:
