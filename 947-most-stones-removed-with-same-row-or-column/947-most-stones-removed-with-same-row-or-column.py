@@ -1,7 +1,7 @@
 class Union:
     def __init__(self, size):
         self.parent = [i for i in range(size)]
-        self.rank = [1] * size
+        self.size = [1] * size
         
     def find(self, i):
         if self.parent[i] != i:
@@ -10,10 +10,12 @@ class Union:
     
     def connect(self, i, j):
         i, j = self.find(i), self.find(j)
-        if self.rank[j] < self.rank[i]:
-            i, j = j, i
-        self.rank[j] += 1
-        self.parent[i] = j
+        if self.size[i] > self.size[j]:
+            self.size[i] += self.size[j]
+            self.parent[j] = i
+        else:
+            self.size[j] += self.size[i]
+            self.parent[i] = j
 
 class Solution:
     def removeStones(self, stones: List[List[int]]) -> int:
