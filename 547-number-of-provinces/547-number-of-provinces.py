@@ -1,24 +1,16 @@
-class Union:
-    def __init__(self, size):
-        self.parent = [i for i in range(size)]
-        
-    def find(self, i):
-        if self.parent[i] != i:
-            self.parent[i] = self.find(self.parent[i])
-        return self.parent[i]
-    
-    def connect(self, i, j):
-        i, j = self.find(i), self.find(j)
-        self.parent[i] = j
-
 class Solution:
-    def findCircleNum(self, isConnected: List[List[int]]) -> int:
-        n = len(isConnected)
-        U = Union(n)
+    def dfs(self, i, n, M):
+        self.visited[i] = 1
+        for j in range(n):
+            if not self.visited[j] and M[i][j]:
+                self.dfs(j, n, M)
+    
+    def findCircleNum(self, M: List[List[int]]) -> int:
+        n = len(M)
+        self.visited = [0] * n
+        ans = 0
         for i in range(n):
-            for j in range(n):
-                if isConnected[i][j]:
-                    U.connect(i, j)
-        for i in range(n):
-            U.find(i)
-        return len(set(U.parent))
+            if not self.visited[i]:
+                ans += 1
+                self.dfs(i, n, M)
+        return ans
