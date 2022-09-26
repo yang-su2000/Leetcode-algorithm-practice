@@ -3,17 +3,17 @@ class Union:
         self.parent = [i for i in range(size)]
         
     def find(self, i):
-        # root = i
-        # while self.parent[root] != root:
-        #     root = self.parent[root]
-        # while i != root:
-        #     parent_i = self.parent[i]
-        #     self.parent[parent_i] = root
-        #     i = parent_i
-        # return root
-        if self.parent[i] != i:
-            self.parent[i] = self.find(self.parent[i])
-        return self.parent[i]
+        root = i
+        while self.parent[root] != root:
+            root = self.parent[root]
+        while i != root:
+            parent_i = self.parent[i]
+            self.parent[i] = root
+            i = parent_i
+        return root
+        # if self.parent[i] != i:
+        #     self.parent[i] = self.find(self.parent[i])
+        # return self.parent[i]
     
     def connect(self, i, j):
         i, j = self.find(i), self.find(j)
