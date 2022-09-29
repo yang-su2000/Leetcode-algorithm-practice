@@ -1,10 +1,11 @@
 class Solution:
     def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
-        q = [] # (dist, val)
-        n = len(arr)
+        d = deque()
         for i in arr:
-            heapq.heappush(q, (-abs(i - x), -i))
-            if len(q) > k:
-                heapq.heappop(q)
-        return sorted([-i for _, i in q])
-            
+            d.append(i)
+            if len(d) > k:
+                if abs(i - x) >= abs(d[0] - x):
+                    d.pop()
+                else:
+                    d.popleft()
+        return d
