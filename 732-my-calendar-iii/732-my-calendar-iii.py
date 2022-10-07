@@ -1,14 +1,20 @@
+from sortedcontainers import SortedDict
+
 class MyCalendarThree:
 
     def __init__(self):
-        self.d = defaultdict(int)
+        self.d = SortedDict()
 
     def book(self, start: int, end: int) -> int:
+        if not start in self.d:
+            self.d[start] = 0
+        if not end in self.d:
+            self.d[end] = 0
         self.d[start] += 1
         self.d[end] -= 1
         ans = 0
         cur = 0
-        for time, count in sorted(self.d.items()):
+        for time, count in self.d.items():
             cur += count
             ans = max(ans, cur)
         return ans
