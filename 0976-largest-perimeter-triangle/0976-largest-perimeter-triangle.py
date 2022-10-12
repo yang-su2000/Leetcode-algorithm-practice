@@ -1,15 +1,9 @@
 class Solution:
     def largestPerimeter(self, nums: List[int]) -> int:
         nums.sort()
-        ans = 0
         n = len(nums)
-        i, j, k = n - 3, n - 2, n - 1
-        while 0 <= i < j < k < n:
-            if nums[i] + nums[j] > nums[k]:
-                return nums[i] + nums[j] + nums[k]
-            else:
-                k -= 1
-                j -= 1
-                i -= 1
-        return ans
+        for i in range(n-3, -1, -1):
+            if nums[i] + nums[i+1] > nums[i+2]:
+                return nums[i] + nums[i+1] + nums[i+2]
+        return 0
                 
