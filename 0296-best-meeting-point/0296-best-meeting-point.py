@@ -6,15 +6,13 @@ class Solution:
             for j in range(m):
                 if grid[i][j] == 1:
                     nls.append(i)
+        for j in range(m):
+            for i in range(n):
+                if grid[i][j] == 1:
                     mls.append(j)
-        mls.sort()
         # print(nls, mls)
-        if len(nls) % 2:
-            ni = nls[len(nls)//2]
-            mi = mls[len(mls)//2]
-        else:
-            ni = (nls[len(nls)//2-1] + nls[len(nls)//2]) // 2
-            mi = (mls[len(mls)//2-1] + mls[len(mls)//2]) // 2
+        ni = nls[len(nls)//2]
+        mi = mls[len(mls)//2]
         # print(ni, mi)
         ans = sum([abs(ni - nls[k]) + abs(mi - mls[k]) for k in range(len(nls))])
         return ans
