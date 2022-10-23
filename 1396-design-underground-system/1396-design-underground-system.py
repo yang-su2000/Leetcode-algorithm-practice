@@ -9,7 +9,6 @@ class UndergroundSystem:
 
     def checkOut(self, id: int, stationName: str, t: int) -> None:
         in_station, in_t = self.ins[id]
-        del self.ins[id]
         ls = self.routes[(in_station, stationName)]
         ls[0] += t - in_t
         ls[1] += 1
