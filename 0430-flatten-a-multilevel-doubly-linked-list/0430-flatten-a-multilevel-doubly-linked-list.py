@@ -9,29 +9,19 @@ class Node:
 """
 
 class Solution:
-    def rec(self, head):
-        # print(head.val)
-        l_cur = head
-        r_cur = head
-        while head:
-            r_cur = head
-            if head.child:
-                l = head
-                r = head.next
-                l_next, r_prev = self.rec(head.child)
-                l.next = l_next
-                l_next.prev = l
-                r_prev.next = r
-                if r:
-                    r.prev = r_prev
-                r_cur = r_prev
-                head.child = None
-                head = r
-            else:
-                head = head.next
-        # print(l_cur.val, r_cur.val)
-        return l_cur, r_cur
+    def rec(self, prev, cur):
+        if not cur:
+            return prev
+        cur.prev = prev
+        prev.next = cur
+        tmp_next = cur.next
+        tail = self.rec(cur, cur.child)
+        cur.child = None
+        return self.rec(tail, tmp_next)
     
     def flatten(self, head: 'Optional[Node]') -> 'Optional[Node]':
-        self.rec(head)
-        return head
+        if not head: return head
+        dummy = Node(None, None, head, None)
+        self.rec(dummy, head)
+        dummy.next.prev = None
+        return dummy.next
