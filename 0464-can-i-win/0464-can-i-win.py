@@ -6,7 +6,7 @@ class Solution:
         avail = (1 << n) - 1
         
         # stores seen states like dp
-        @lru_cache(None)
+        @functools.cache
         def trace(a, t):
             for i in range(n):
                 # need (condition 1) and (condition 2 or condition 3) for me to win
