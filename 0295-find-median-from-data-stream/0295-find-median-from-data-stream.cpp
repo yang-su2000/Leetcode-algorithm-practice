@@ -6,18 +6,13 @@ public:
     }
     
     void addNum(int num) {
-        if (lo.empty() or num < lo.top()) lo.push(num);
-        else hi.push(num);
+        lo.push(num);
+        hi.push(lo.top());
+        lo.pop();
         if (hi.size() > lo.size()) {
-            int val = hi.top();
+            lo.push(hi.top());
             hi.pop();
-            lo.push(val);
-        } else if (lo.size() > hi.size() + 1) {
-            int val = lo.top();
-            lo.pop();
-            hi.push(val);
         }
-        // if (lo.size() and hi.size()) cout << lo.top() << hi.top() << endl;
     }
     
     double findMedian() {
