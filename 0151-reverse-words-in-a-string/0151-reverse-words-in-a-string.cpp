@@ -1,20 +1,21 @@
 class Solution {
 public:
     string reverseWords(string s) {
-        auto tokens = split(s, " ");
-        string ans;
-        // for (auto &t:tokens) cout << '[' << t << ']' << endl;
-        for (int i = tokens.size()-1; i >= 0; i--) {
-            if (!tokens[i].size()) continue;
-            ans += tokens[i] + ' ';
+        s += ' ';
+        vector<string> ls;
+        int i=0;
+        string cur;
+        for (char &c:s) {
+            if (c == ' ') {
+                if (cur.size()) {
+                    ls.push_back(cur);
+                    cur.clear();
+                }
+            } else cur += c;
         }
+        string ans;
+        for (int i=ls.size()-1; i>=0; i--) ans += ls[i] + ' ';
         ans.pop_back();
         return ans;
-    }
-    
-    vector<string> split(string s, string regex_s) {
-        regex regexz(regex_s);
-        return {sregex_token_iterator(s.begin(), s.end(), regexz, -1), \
-                sregex_token_iterator()};
     }
 };
