@@ -1,11 +1,13 @@
 class Solution {
 public:
     bool isStrobogrammatic(string num) {
-        int l=0, r=num.size()-1;
-        while (l<=r) {
-            if ((num[l]=='8' and num[r]=='8') or (num[l]=='6' and num[r]=='9') or (num[l]=='0' and num[r]=='0') or (num[l]=='1' and num[r]=='1') or (num[l]=='9' and num[r]=='6')) {l++, r--;}
-            else return false;
+        map<char, char> m {{'0', '0'}, {'1', '1'}, {'6', '9'}, {'8', '8'}, {'9', '6'}};
+        string num2 = "";
+        for (auto &c: num) {
+            if (!m.count(c)) return false;
+            num2 += m[c];
         }
-        return true;
+        reverse(num.begin(), num.end());
+        return num == num2;
     }
 };
