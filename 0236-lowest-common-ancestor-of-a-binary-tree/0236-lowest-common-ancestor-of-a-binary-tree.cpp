@@ -30,8 +30,8 @@ public:
             if (node == p) val += 1;
             if (node == q) val += 2;
             if (val == 3) return node;
-            m.erase(node->left);
-            m.erase(node->right);
+            // m.erase(node->left);
+            // m.erase(node->right);
             m[node] = val;
             s.pop();
         }
