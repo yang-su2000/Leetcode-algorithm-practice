@@ -1,15 +1,14 @@
 class Solution {
 public:
     void wiggleSort(vector<int>& nums) {
-        sort(nums.begin(), nums.end());
-        vector<int> ans;
-        int l = 0;
-        int r = nums.size()-1;
-        while (l < r) {
-            ans.emplace_back(nums[l++]);
-            ans.emplace_back(nums[r--]);
+        bool less = true;
+        for (int i=0; i<nums.size()-1; i++) {
+            if (less) {
+                if (nums[i] > nums[i+1]) swap(nums[i], nums[i+1]);
+            } else {
+                if (nums[i] < nums[i+1]) swap(nums[i], nums[i+1]);
+            }
+            less = !less;
         }
-        if (l == r) ans.emplace_back(nums[l]);
-        swap(ans, nums);
     }
 };
