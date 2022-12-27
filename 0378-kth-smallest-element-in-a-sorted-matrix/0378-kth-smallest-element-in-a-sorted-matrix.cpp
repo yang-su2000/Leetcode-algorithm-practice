@@ -8,12 +8,10 @@ public:
         while (0<=i and i<n and 0<=j and j<m) {
             int target = matrix[i][j];
             auto pos = getPos(target, matrix);
-            // printf("%d: %d %d\n", target, pos.first, pos.second);
             if (pos.first <= k and k <= pos.second) return target;
             else if (pos.second < k) i++;
             else j--;
         }
-        // printf("{%d %d}", i, j);
         return matrix[i][j];
     }
     
@@ -22,10 +20,8 @@ public:
         int ans0 = 0;
         int ans1 = 0;
         for (auto &v:mat) {
-            int count0 = lower_bound(v.begin(), v.end(), target) - v.begin();
-            int count1 = upper_bound(v.begin(), v.end(), target) - v.begin();
-            ans0 += count0;
-            ans1 += count1;
+            ans0 += lower_bound(v.begin(), v.end(), target) - v.begin();
+            ans1 += upper_bound(v.begin(), v.end(), target) - v.begin();
         }
         return {ans0+1, ans1};
     }
