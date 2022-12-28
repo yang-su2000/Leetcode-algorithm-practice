@@ -1,8 +1,9 @@
 class Solution {
     vector<int> v;
+    vector<int> v2;
 public:
     Solution(vector<int>& nums) {
-        v = nums;
+        v2 = v = nums;
     }
     
     vector<int> reset() {
@@ -10,16 +11,8 @@ public:
     }
     
     vector<int> shuffle() {
-        vector<int> ret(v.size(), INT_MAX);
-        int p;
-        for (int i:v) {
-            while (1) {
-                p = rand() % (v.size());
-                if (ret[p] == INT_MAX) break;
-            }
-            ret[p] = i;
-        }
-        return ret;
+        swap(v2[rand() % v2.size()], v2[rand() % v2.size()]);
+        return v2;
     }
 };
 
