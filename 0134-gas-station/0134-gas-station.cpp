@@ -14,21 +14,10 @@ public:
                 l = r;
                 count = 0;
                 g = 0;
-            } else if (count == n) {
+            } else if (l == r) {
                 return l;
             } 
         }
-        //     int start = i;
-        //     int count = 0;
-        //     do {
-        //         g += gas[i] - cost[i];
-        //         i = (i + 1) % n;
-        //         count++;
-        //     } while (start != i and g >= 0);
-        //     if (start == i and g >= 0) return start;
-        //     i = start + count;
-        //     g = 0;
-        // }
         return -1;
     }
 };
