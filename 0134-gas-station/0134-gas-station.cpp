@@ -16,8 +16,8 @@ public:
                 g = 0;
             } else if (l == r) {
                 return l;
-            } 
+            }
         }
-        return -1;
+        return INT_MIN;
     }
 };
