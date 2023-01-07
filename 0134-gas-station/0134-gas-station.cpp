@@ -5,21 +5,15 @@ public:
         int l = 0, r = 0;
         int g = 0;
         while (l < n) {
-            bool moved = false;
-            while (l != r or !moved) {
-                moved = true;
+            do {
                 g += gas[r] - cost[r];
                 r = (r + 1) % n;
-                // cout << "[" << r << " " << g << "] ";
-                if (g < 0) break;
-            }
-            // cout << l << " " << r << " " << g << ", ";
+            } while (l != r and g >= 0);
             if (l == r and g >= 0) return l;
             while (l < n and g < 0) {
                 g += cost[l] - gas[l];
                 l++;
             }
-            // cout << l << " " << r << " " << g << endl;
         }
         return -1;
     }
