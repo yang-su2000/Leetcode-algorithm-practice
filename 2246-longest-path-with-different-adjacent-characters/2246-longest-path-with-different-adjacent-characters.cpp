@@ -17,24 +17,35 @@ public:
             ans = max(ans, 1);
             return 1;
         }
-        priority_queue<int, vector<int>, greater<>> pq; // min heap
+        // priority_queue<int, vector<int>, greater<>> pq; // min heap
         char c = s[node];
         int child_ret;
+        int max1 = 0, max2 = 0;
         for (int child: A[node]) {
             child_ret = rec(child, s);
-            if (s[child] != c) {
-                pq.push(child_ret);
-                if (pq.size() > 2) pq.pop();
+            if (s[child] == c) continue;
+            if (child_ret > max1) {
+                max2 = max1;
+                max1 = child_ret;
+            } else if (child_ret > max2) {
+                max2 = child_ret;
             }
         }
-        int ret = 1;
-        int ans_ = 1;
-        while (!pq.empty()) {
-            ret = max(ret, pq.top() + 1);
-            ans_ += pq.top();
-            pq.pop();
-        }
-        ans = max(ans, ans_);
-        return ret;
+        // for (int child: A[node]) {
+        //     child_ret = rec(child, s);
+        //     if (s[child] != c) {
+        //         pq.push(child_ret);
+        //         if (pq.size() > 2) pq.pop();
+        //     }
+        // }
+        // int ret = 1;
+        // int ans_ = 1;
+        // while (!pq.empty()) {
+        //     ret = max(ret, pq.top() + 1);
+        //     ans_ += pq.top();
+        //     pq.pop();
+        // }
+        ans = max(ans, max1 + max2 + 1);
+        return max(max1, max2) + 1;
     }
 };
