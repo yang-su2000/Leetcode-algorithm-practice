@@ -1,12 +1,12 @@
 class Union {
-    vector<char> parent;
+    vector<int> parent;
 public:
     Union() {
         parent.resize(26);
         for (int c=0; c<26; c++) parent[c] = c;
     }
     
-    char find(int c) {
+    int find(int c) {
         if (parent[c] != c) parent[c] = find(parent[c]);
         return parent[c];
     }
