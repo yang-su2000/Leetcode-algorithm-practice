@@ -1,10 +1,11 @@
 class Solution:
     def minFlipsMonoIncr(self, s: str) -> int:
-        m0 = 0 if s[0] == '0' else 1
-        m1 = 0 if s[0] == '1' else 1
-        for c in s[1:]:
+        m0 = 0
+        m1 = 0
+        for c in s:
             if c == '0':
-                m1 = min(m0 + 1, m1 + 1)
+                m1 = min(m0, m1) + 1
             else:
-                m0, m1 = m0 + 1, min(m0, m1)
+                m1 = min(m0, m1)
+                m0 += 1
         return min(m0, m1)
