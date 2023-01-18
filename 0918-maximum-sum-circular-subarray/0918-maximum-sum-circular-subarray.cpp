@@ -1,22 +1,20 @@
 class Solution {
 public:
+    // which is equal to: find the minimum subarray (could be empty)
+    // look up: Kadane's algorithm
     int maxSubarraySumCircular(vector<int>& nums) {
-        multiset<int> s {nums[0]};
-        int n = nums.size();
-        int ans = nums[0];
-        int psum = nums[0];
-        for (int i=1; i<n; i++) {
-            psum += nums[i];
-            ans = max(ans, psum - min(0, *s.begin()));
-            s.insert(psum);
+        int cmax = 0;
+        int cmin = 0;
+        int smax = nums[0];
+        int smin = nums[0];
+        int sum = 0;
+        for (int i: nums) {
+            cmax = max(cmax, 0) + i;
+            cmin = min(cmin, 0) + i;
+            smax = max(smax, cmax);
+            smin = min(smin, cmin);
+            sum += i;
         }
-        int psum2 = 0;
-        for (int i=0; i<n-1; i++) {
-            psum += nums[i];
-            psum2 += nums[i];
-            s.erase(s.lower_bound(psum2));
-            ans = max(ans, psum - *s.begin());
-        }
-        return ans;
+        return sum == smin ? smax : max(smax, sum - smin);
     }
 };
