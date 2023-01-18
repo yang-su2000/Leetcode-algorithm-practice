@@ -4,9 +4,8 @@ public:
         int csum = 0;
         int msum = nums[0];
         for (int i: nums) {
-            csum += i;
+            csum = max(csum, 0) + i;
             msum = max(msum, csum);
-            csum = max(csum, 0);
         }
         return msum;
     }
