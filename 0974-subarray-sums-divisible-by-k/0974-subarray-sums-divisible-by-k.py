@@ -1,6 +1,6 @@
 class Solution:
     def subarraysDivByK(self, nums: List[int], k: int) -> int:
-        d = defaultdict(int)
+        d = [0] * k
         d[0] = 1
         sum = 0
         ans = 0
