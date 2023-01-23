@@ -1,6 +1,13 @@
 class Solution:
     def confusingNumber(self, n: int) -> bool:
-        if set(str(n)) & {'2', '3', '4', '5', '7'}:
-            return False
-        d = {'0': '0', '1': '1', '6': '9', '8': '8', '9': '6'}
-        return ''.join([d[c] for c in str(n)][::-1]) != str(n)
+        invert_map = {0: 0, 1: 1, 8: 8, 6: 9, 9: 6}
+        ans = 0
+        n_ = n
+        while n:
+            cur = n % 10
+            if cur not in invert_map:
+                return False
+            ans = ans * 10 + invert_map[cur]
+            n //= 10
+        return ans != n_
+            
