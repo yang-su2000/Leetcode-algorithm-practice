@@ -1,22 +1,28 @@
 class Trie {
+    vector<Trie*> m;
+    bool tail;
 public:
-    unordered_map<char, Trie*> m;
-    bool tail = false;
-
+    Trie() {
+        m.resize(26, nullptr);
+        tail = false;
+    }
+    
     void add(string &s, int i) {
         if (i == s.size()) {
             tail = true;
             return;
         }
-        if (!m.count(s[i])) m[s[i]] = new Trie();
-        m[s[i]]->add(s, i+1);
+        int c = s[i]-'a';
+        if (!m[c]) m[c] = new Trie();
+        m[c]->add(s, i+1);
     }
     
     bool find(Trie &T, string &s, int i, int count) {
         if (i == s.size()) return tail and count >= 1;
         if (tail and T.find(T, s, i, count+1)) return true;
-        if (!m.count(s[i])) return false;
-        return m[s[i]]->find(T, s, i+1, count);
+        int c = s[i]-'a';
+        if (!m[c]) return false;
+        return m[c]->find(T, s, i+1, count);
     }
 };
 
