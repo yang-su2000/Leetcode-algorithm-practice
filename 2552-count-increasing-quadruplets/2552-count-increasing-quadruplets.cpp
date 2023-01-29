@@ -16,12 +16,13 @@ public:
                 if (nums[idx_2] < nums[idx_1]) {
                     // k = idx_1;
                     // i = idx_2;
-                    // nums[i] < nums[k]
+                    // nums[i] < nums[k] at current k = idx1
                     lt_k++;
                     // nums[j] < nums[l] from dp[j] that has all "ikj" pattern
                     // l = idx_1;
                     // j = idx_2;
                     ans += dp[idx_2];
+                    // we can treat idx_1 and idx_2 to two different combos of indexes because each k,i,l,j is virtually used only once in this condition setup
                 } else if (nums[idx_1] < nums[idx_2]) {
                     // k = idx_1;
                     // j = idx_2;
