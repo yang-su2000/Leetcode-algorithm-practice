@@ -1,6 +1,6 @@
 class Trie {
 public:
-    map<char, Trie*> children;
+    unordered_map<char, Trie*> children;
     string val;
 
     void build(string s, int i) {
