@@ -27,5 +27,5 @@ class Solution:
                 cl = 1
             else:
                 cl += 1
-            print(t, ans)
+            # print(t, ans)
         return max(ans, c1 + c2)
