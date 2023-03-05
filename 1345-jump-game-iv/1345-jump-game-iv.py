@@ -1,33 +1,29 @@
 class Solution:
     def minJumps(self, arr: List[int]) -> int:
         n = len(arr)
-        dp = [0] * n # 0 unvisit, 1 in visit, 2 done visit
-        dp[0] = 1
+        vis = [False] * n
+        vis[0] = True
         q = [0]
         d = defaultdict(list)
         for i in range(n):
             d[arr[i]].append(i)
         ans = -1
         while q:
-            # print(q)
             ans += 1
             q2 = []
             for i in q:
                 if i == n-1:
                     return ans
-                if dp[i] == 2:
-                    continue
-                dp[i] = 2
-                if i > 0 and dp[i-1] == 0:
+                if i > 0 and not vis[i-1]:
                     q2.append(i-1)
-                    dp[i-1] = 1
-                if i < n-1 and dp[i+1] == 0:
+                    vis[i-1] = True
+                if i < n-1 and not vis[i+1]:
                     q2.append(i+1)
-                    dp[i+1] = 1
+                    vis[i+1] = True
                 for j in d[arr[i]]:
-                    if dp[j] == 0:
+                    if not vis[j]:
                         q2.append(j)
-                        dp[j] = 1
-                d[arr[i]].clear()
+                        vis[j] = True
+                d[arr[i]].clear() # crucial optim step to avoid checking all same value again
             q = q2
         return -1 # not found, unreachable
