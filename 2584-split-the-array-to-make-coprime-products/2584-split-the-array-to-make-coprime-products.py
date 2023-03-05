@@ -37,22 +37,16 @@ class Solution:
                         if l[i] == 0:
                             count += r[i] - 1
                             l[i] = 1
-                            r[i] -= 1
                         else:
                             count -= 1
-                            l[i] += 1
-                            r[i] -= 1
                         done = True
                     num //= i
             if num > 1:
                 if l[num] == 0:
                     count += r[num] - 1
                     l[num] = 1
-                    r[num] -= 1
                 else:
                     count -= 1
-                    l[num] += 1
-                    r[num] -= 1
             # print(l, r)
             if not count:
                 return idx
