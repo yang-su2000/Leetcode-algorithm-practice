@@ -8,7 +8,7 @@ class Solution:
             return ret
         
         l = 0
-        r = 10**14
+        r = min(time) * totalTrips
         while l < r:
             mid = (l + r) // 2
             trips = getTrips(mid)
