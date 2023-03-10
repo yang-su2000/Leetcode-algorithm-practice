@@ -6,15 +6,18 @@
 class Solution:
 
     def __init__(self, head: Optional[ListNode]):
-        self.ls = []
-        while head:
-            self.ls.append(head.val)
-            head = head.next
-        self.l = len(self.ls)
+        self.head = head
 
     def getRandom(self) -> int:
-        return self.ls[random.randint(0, self.l - 1)]
-
+        scope = 1
+        cur = self.head
+        ret = cur.val
+        while cur:
+            if random.random() < 1 / scope:
+                ret = cur.val
+            cur = cur.next
+            scope += 1
+        return ret
 
 # Your Solution object will be instantiated and called as such:
 # obj = Solution(head)
