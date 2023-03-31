@@ -14,7 +14,7 @@ class Solution:
                     psum[i][j] += psum[i][j+1]
                 if i != n-1 and j != m-1:
                     psum[i][j] -= psum[i+1][j+1]
-        print(psum)
+        # print(psum)
         dp = [[0] * m for _ in range(n)]
         mod = int(1e9+7)
         for i in range(n-1, 0, -1):
@@ -27,7 +27,7 @@ class Solution:
             sum2 = psum[0][j]
             if sum2 and sum1 - sum2:
                 dp[0][j] = 1
-        print(dp)
+        # print(dp)
         for _ in range(k-2):
             dp2 = [[0] * m for _ in range(n)]
             for i in range(n):
@@ -45,5 +45,5 @@ class Solution:
                         if sum2 and sum1 - sum2:
                             dp2[i][j2] = (dp2[i][j2] + dp[i][j]) % mod
             dp = dp2
-            print(dp)
+            # print(dp)
         return sum([sum(row) for row in dp]) % mod
