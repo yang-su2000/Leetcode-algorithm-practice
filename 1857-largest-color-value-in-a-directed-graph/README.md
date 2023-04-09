@@ -1,4 +1,4 @@
-<h2><a href="https://leetcode.com/problems/largest-color-value-in-a-directed-graph/">1857. Largest Color Value in a Directed Graph</a></h2><h3>Hard</h3><hr><div><p>There is a <strong>directed graph</strong> of <code>n</code> colored nodes and <code>m</code> edges. The nodes are numbered from <code>0</code> to <code>n - 1</code>.</p>
+<h2><a href="https://leetcode.com/problems/largest-color-value-in-a-directed-graph/solution/">1857. Largest Color Value in a Directed Graph</a></h2><h3>Hard</h3><hr><div><p>There is a <strong>directed graph</strong> of <code>n</code> colored nodes and <code>m</code> edges. The nodes are numbered from <code>0</code> to <code>n - 1</code>.</p>
 
 <p>You are given a string <code>colors</code> where <code>colors[i]</code> is a lowercase English letter representing the <strong>color</strong> of the <code>i<sup>th</sup></code> node in this graph (<strong>0-indexed</strong>). You are also given a 2D array <code>edges</code> where <code>edges[j] = [a<sub>j</sub>, b<sub>j</sub>]</code> indicates that there is a <strong>directed edge</strong> from node <code>a<sub>j</sub></code> to node <code>b<sub>j</sub></code>.</p>
 
