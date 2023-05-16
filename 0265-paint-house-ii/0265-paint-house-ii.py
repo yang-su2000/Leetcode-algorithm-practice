@@ -2,15 +2,18 @@ class Solution:
     def minCostII(self, costs: List[List[int]]) -> int:
         n = len(costs)
         k = len(costs[0])
-        dp = [[0] * k for _ in range(n)]
-        dp[0] = costs[0]
-        for i in range(1, n):
-            for k1 in range(k): # cur
-                cur = inf
-                for k2 in range(k): # prev
-                    if k1 == k2:
-                        continue
-                    cur = min(cur, dp[i-1][k2])
-                dp[i][k1] = cur + costs[i][k1]
-        # print(dp)
-        return min(dp[-1])
+        pq = [[] for _ in range(n)] # (min_cost, idx)
+        for i in range(n):
+            for j in range(k):
+                if i and j == pq[i-1][1][1]:
+                    prev = -pq[i-1][0][0]
+                elif i:
+                    prev = -pq[i-1][1][0]
+                else:
+                    prev = 0
+                cur = costs[i][j] + prev
+                heapq.heappush(pq[i], (-cur, j))
+                if len(pq[i]) > 2:
+                    heapq.heappop(pq[i])
+        # print(pq)
+        return min(-pq[-1][0][0], -pq[-1][1][0])
