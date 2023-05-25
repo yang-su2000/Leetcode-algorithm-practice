@@ -9,19 +9,20 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
-        def inorder(root):
-            if not root:
-                return []
-            return inorder(root.left) + [root] + inorder(root.right)
+        a, b, lst = None, None, None
         
-        ls = inorder(root)
-        # print([node.val for node in ls])
-        a, b = None, None
-        for i in range(len(ls) - 1):
-            node, node2 = ls[i], ls[i+1]
-            if node.val > node2.val:
-                if a is None:
-                    a = node
-                b = node2
-        # print(a.val, b.val)
+        def inorder(node):
+            nonlocal a, b, lst
+            if node.left:
+                inorder(node.left)
+            if lst and lst.val > node.val:
+                if not a:
+                    a = lst
+                b = node
+            lst = node
+            if node.right:
+                inorder(node.right)
+
+        inorder(root)
+        print(a.val, b.val)
         a.val, b.val = b.val, a.val
