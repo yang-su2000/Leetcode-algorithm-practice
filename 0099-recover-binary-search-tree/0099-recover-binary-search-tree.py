@@ -16,13 +16,15 @@ class Solution:
             if node.left:
                 inorder(node.left)
             if lst and lst.val > node.val:
+                b = node
                 if not a:
                     a = lst
-                b = node
+                else:
+                    return
             lst = node
             if node.right:
                 inorder(node.right)
 
         inorder(root)
-        print(a.val, b.val)
+        # print(a.val, b.val)
         a.val, b.val = b.val, a.val
