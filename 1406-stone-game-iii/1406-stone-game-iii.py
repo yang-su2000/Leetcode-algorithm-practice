@@ -1,33 +1,21 @@
 class Solution:
     def stoneGameIII(self, ls: List[int]) -> str:
         n = len(ls)
-        for i in range(n-2, -1, -1):
-            ls[i] += ls[i+1]
-        # print(ls)
         d = [None] * n
-
-        def dp(i): # (val, # stones)
+        
+        def dp(i): # my stone - # opponent stone
             nonlocal n, d
             if i >= n:
-                return (0, 0)
+                return 0
             if d[i]:
                 return d[i]
-            val = inf
-            stone = None
-            for j in range(i+1, i+4):
-                val2, _ = dp(j)
-                if val2 < val:
-                    val = val2
-                    stone = j-i
-            d[i] = (ls[i] - val, stone)
+            d[i] = max(ls[i] - dp(i+1), sum(ls[i:i+2]) - dp(i+2), sum(ls[i:i+3]) - dp(i+3))
             return d[i]
         
-        val, stone = dp(0)
-        if stone < n:
-            val -= d[stone][0]
-        if val > 0:
+        ans = dp(0)
+        if ans > 0:
             return 'Alice'
-        elif val == 0:
+        elif ans == 0:
             return 'Tie'
         else:
             return 'Bob'
