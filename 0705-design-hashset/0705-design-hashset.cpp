@@ -1,8 +1,9 @@
 class MyHashSet {
-    bool ht[1000001]={false};
+    vector<bool> ht;
 public:
     /** Initialize your data structure here. */
     MyHashSet() {
+        ht.resize(1e6+1);
     }
     
     void add(int key) {
