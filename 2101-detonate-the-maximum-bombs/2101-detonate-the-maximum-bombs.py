@@ -8,7 +8,7 @@ class Solution:
                 if i == j:
                     continue
                 x2, y2, r2 = bombs[j]
-                if (x - x2) * (x - x2) + (y - y2) * (y - y2) <= r * r:
+                if (x - x2) ** 2 + (y - y2) ** 2 <= r ** 2:
                     A[i].append(j)
         ans = 0
         
