@@ -9,7 +9,7 @@ class Solution:
                 head = i
         
         def dfs(i):
-            return (max([dfs(j) for j in A[i]]) if A[i] else 0) + informTime[i]
+            return (max(dfs(j) for j in A[i]) if A[i] else 0) + informTime[i]
         
         return dfs(head)
             
