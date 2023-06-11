@@ -1,13 +1,14 @@
 class Solution:
     def totalSteps(self, nums: List[int]) -> int:
         n = len(nums)
-        ls = []
-        dp = [0] * n
+        ls = [] # (index, val)
+        ans = 0
         for i in range(n-1, -1, -1):
-            while ls and nums[i] > nums[ls[-1]]:
-                dp[i] = max(dp[i] + 1, dp[ls[-1]])
+            val = 0
+            while ls and nums[i] > nums[ls[-1][0]]:
+                val = max(val + 1, ls[-1][1])
                 ls.pop()
-            ls.append(i)
-        # print(dp, ls)
-        return max(dp)
+            ls.append((i, val))
+            ans = max(ans, val)
+        return ans
             
