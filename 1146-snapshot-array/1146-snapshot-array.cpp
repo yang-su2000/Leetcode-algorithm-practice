@@ -4,15 +4,12 @@ class SnapshotArray {
 public:
     SnapshotArray(int length) {
         v.resize(length);
+        for (int i=0; i<length; i++) v[i].push_back(make_pair(0, 0));
         snap_id = 0;
     }
     
     void set(int index, int val) {
-        if (!v[index].empty() && v[index].back().first == snap_id) {
-            v[index].back().second = val;
-            return;
-        }
-        v[index].push_back({snap_id, val});
+        v[index].push_back(make_pair(snap_id, val));
     }
     
     int snap() {
@@ -20,20 +17,8 @@ public:
     }
     
     int get(int index, int snap_id) {
-        // for (int i=0; i<v.size(); i++) {
-        //     if (v[i].empty()) continue;
-        //     cout << i << ": ";
-        //     for (auto [id, val]: v[i]) cout << id << ", " << val << "; ";
-        //     cout << endl;
-        // }
-        if (v[index].empty() || v[index][0].first > snap_id) return 0;
-        int l = 0, r = v[index].size()-1;
-        while (l < r) {
-            int mid = l + (r - l) / 2 + 1;
-            if (v[index][mid].first > snap_id) r = mid-1;
-            else l = mid;
-        }
-        return v[index][l].second;
+        auto it = upper_bound(v[index].begin(), v[index].end(), make_pair(snap_id, INT_MAX));
+        return prev(it)->second;
     }
 };
 
