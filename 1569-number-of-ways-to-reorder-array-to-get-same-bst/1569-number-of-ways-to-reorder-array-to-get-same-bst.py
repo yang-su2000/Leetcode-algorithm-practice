@@ -1,15 +1,5 @@
-class Node:
-    def __init__(self, val):
-        self.val = val
-        self.l = None
-        self.r = None
-        
-    # def __str__(self):
-    #     return str(self.val) + '[' + str(self.l) + ', ' + str(self.r) + ']'
-
 class Solution:
     def numOfWays(self, nums: List[int]) -> int:
-        root = Node(nums[0])
         n = len(nums)
         dp = [[1] * (n+1) for _ in range(n+1)]
         mod = 10**9+7
@@ -22,7 +12,7 @@ class Solution:
         
         def trace(ls):
             nonlocal mod, dp
-            if not ls:
+            if len(ls) < 3:
                 return 1
             l = [i for i in ls if i < ls[0]]
             r = [i for i in ls if i > ls[0]]
