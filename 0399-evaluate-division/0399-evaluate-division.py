@@ -4,7 +4,7 @@ class Solution:
         for (a, b), val in zip(equations, values):
             A[a][b] = val
             A[b][a] = 1. / val
-        print(A)
+        # print(A)
         ans = []
         for a, b in queries:
             if a not in A or b not in A:
