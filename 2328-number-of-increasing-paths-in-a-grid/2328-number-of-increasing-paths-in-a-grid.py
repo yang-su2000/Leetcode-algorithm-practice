@@ -19,13 +19,7 @@ class Solution:
         @cache
         def dfs(i, j):
             nonlocal A, mod
-            ls = A[(i, j)]
-            if not ls:
-                return 1
-            ret = 1 - len(ls)
-            for i2, j2 in ls:
-                ret = (ret + dfs(i2, j2) + 1) % mod
-            return ret
+            return (1 + sum(dfs(i2, j2) for i2, j2 in A[(i, j)])) % mod
         
         ans = 0
         for i in range(n):
