@@ -1,5 +1,5 @@
 class Solution:
-    def countRoutes(self, ls: List[int], start: int, end: int, fuel: int) -> int:
+    def countRoutes(self, ls: List[int], a: int, b: int, f: int) -> int:
         @cache
-        def dp(a, f): return sum(a == end if a == b else dp(b, f - abs(ls[a] - ls[b])) for b in range(len(ls))) % 1000000007 if f >= 0 else 0
-        return dp(start, fuel)
+        def dp(a_, f_): return sum(a_ == b if a_ == b_ else dp(b_, f_ - abs(ls[a_] - ls[b_])) for b_ in range(len(ls))) % 1000000007 if f_ >= 0 else 0
+        return dp(a, f)
