@@ -4,15 +4,6 @@ class Solution:
         
         @cache
         def dp(x, f):
-            if f < 0:
-                return 0
-            ret = (x == end)
-            for z in range(len(ls)):
-                if z == x:
-                    continue
-                if abs(ls[x] - ls[z]) <= f:
-                    ret += dp(z, f - abs(ls[x] - ls[z]))
-            # print(x, f, ret)
-            return ret % mod
+            return sum(x == end if z == x else dp(z, f - abs(ls[x] - ls[z])) for z in range(len(ls))) % mod if f >= 0 else 0
         
         return dp(start, fuel)
