@@ -1,33 +1,31 @@
 # Leetcode-algorithm-practice
-Favorite leetcode interview questions optimized in C++
 
-### The Classics
-- [LRU](LRU.cpp)
-- [LIS](LIS.cpp)
-- [KMP](KMP.cpp)
-- [Dijsktra](Dijsktra.cpp)
+Favorite leetcode interview questions optimized in C++ and Python
 
-### Most Frequent
-- [Two Sum](twoSum.cpp)
-- [Fibonacci](fibo_jumpFloor.cpp)
-- [Reverse LinkedList](reverseLinkedList.cpp)
-- [Merge Sorted LinkedList](mergeSortedLinkedList.cpp)
-- [Binary Tree Traversal(3 orders)](binary_3order.cpp)
-- [MaxSum SubArray](maxSumSubArray.cpp)
-- [Longest Unique SubArray](longest_uniqueSubArray.cpp)
-- [Kth Largest](Kth_largest.cpp)
+### Classics
 
-### Mid
-- [Three Sum](threeSum.cpp) [(*python version*)](threeSum.py)
-- [Smallest Unsorted SubArray](findUnsortedSubarray.cpp)
-- [Longest Palindrome SubString](longestPalindromeSubstring.cpp)
-- [Find Cycle](findCycle.cpp)
-- [Find Node In Bst with Distance K](findNodeInBst_withDistanceK.cpp)
-- [Valid Triangle](ValidTriangle.cpp)
+**Medium**
 
-### Hard
-- [Find Median Sorted Arrays](findMedianSortedArrays.cpp)
-- [Minimum Operations To Get SubSequence](minOperations_toGet_subsequence.cpp)
+- [QuickSelect](backup_python/quickselect.py)
+- [MaxSubArray](backup_python/maxSubArray.py)
+- [Edit Distance](backup_python/editDistance.py)
+- [MinSubArrayLen](backup_python/minSubArrayLen.py)
+- [LCA (lowest common ancestor)](backup_python/LCA.py)
+- [LPS (longest palindrome substring)](backup_python/LPS.py)
+- [LIS (longest increasing subsequence)](backup_python/LIS.py)
+- [LCS (longest consecutive subsequence)](backup_python/LCS.py)
 
-### Special
-- [Count Digit One](countDigitOne.cpp)
+**Hard**
+
+- [N-Queens](backup_python/nqueens.py)
+- [Trapping Rain Water](backup_python/trap.py)
+- [LRU (least recent used)](backup_python/LRU.py)
+- [LFU (least frequent used)](backup_python/LFU.py)
+
+### Topic Collections
+
+- To Add
+
+### Templates
+
+- To Add
