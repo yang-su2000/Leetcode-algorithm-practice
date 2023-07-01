@@ -18,6 +18,8 @@ class Solution:
                 return
             tmp = ls[i]
             for nxt in range(i + 1, len(ls)):
+                if ls[nxt] * tmp >= 0:
+                    continue
                 ls[nxt] += tmp
                 bt(i + 1, val + 1)
                 ls[nxt] -= tmp
