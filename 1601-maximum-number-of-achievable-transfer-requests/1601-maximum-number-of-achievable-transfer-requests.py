@@ -12,6 +12,8 @@ class Solution:
                     in_[b] += 1
                     out_[a] += 1
                     cur += 1
+            if cur < ans:
+                continue
             if in_ == out_:
                 ans = max(ans, cur)
         return ans
