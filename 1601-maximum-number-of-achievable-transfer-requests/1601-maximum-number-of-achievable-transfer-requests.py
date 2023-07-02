@@ -3,11 +3,11 @@ class Solution:
         m = len(requests)
         ans = 0
         for i in range((1 << m) - 1, 0, -1):
-            in_ = [0] * n
-            out_ = [0] * n
             cur = bin(i).count('1')
             if cur < ans:
                 continue
+            in_ = [0] * n
+            out_ = [0] * n
             for j in range(m):
                 if i & (1 << j):
                     a, b = requests[j]
