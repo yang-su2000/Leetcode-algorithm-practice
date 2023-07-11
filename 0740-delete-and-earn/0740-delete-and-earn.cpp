@@ -11,11 +11,6 @@ public:
             dp[i] = max(dfs(i+1), i * v[i] + dfs(i+2));
             return dp[i];
         };
-        dfs(0);
-        // for (int i=0; i<5; i++) cout << v[i] << ' ';
-        // cout << endl;
-        // for (int i=0; i<5; i++) cout << dp[i] << ' ';
-        // cout << endl;
-        return dp[0];
+        return dfs(0);
     }
 };
