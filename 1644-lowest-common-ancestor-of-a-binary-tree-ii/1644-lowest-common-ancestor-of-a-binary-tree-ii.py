@@ -14,18 +14,10 @@ class Solution:
             count = (node == p) or (node == q)
             if node.left:
                 count += dfs(node.left)
-                if ans:
-                    return 0
-                if count == 2:
-                    ans = node
-                    return 0
             if node.right:
                 count += dfs(node.right)
-                if ans:
-                    return 0
-                if count == 2:
-                    ans = node
-                    return 0
+            if not ans and count == 2:
+                ans = node
             return count
 
         dfs(root)
