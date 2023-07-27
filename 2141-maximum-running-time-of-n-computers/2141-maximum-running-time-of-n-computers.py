@@ -3,7 +3,6 @@ class Solution:
         m = len(bat)
         l = 1
         r = sum(bat) // n
-        bat.sort(reverse=True)
         while l < r:
             mid = (l + r) // 2 + 1
             count = sum(min(b, mid) for b in bat)
