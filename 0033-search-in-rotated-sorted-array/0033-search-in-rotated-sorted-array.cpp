@@ -7,7 +7,7 @@ public:
             if (nums[0] > mid && nums[0] > target) return true;
             return false;
         };
-        while (l <= r) {
+        while (l < r) {
             int mid = (l + r) / 2;
             int val;
             if (same_side(nums[mid], target)) val = nums[mid];
@@ -17,6 +17,7 @@ public:
             else if (target < val) r = mid-1;
             else l = mid+1;
         }
+        if (nums[l] == target) return l;
         return -1;
     }
 };
