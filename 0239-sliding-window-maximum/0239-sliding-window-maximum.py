@@ -1,11 +1,16 @@
-from sortedcontainers import SortedList
-
 class Solution:
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
-        cur = SortedList(nums[:k])
-        ans = [cur[-1]]
+        cur = deque()
+        for i in range(k):
+            while cur and nums[cur[-1]] <= nums[i]:
+                cur.pop()
+            cur.append(i)
+        ans = [nums[cur[0]]]
         for i in range(k, len(nums)):
-            cur.remove(nums[i-k])
-            cur.add(nums[i])
-            ans.append(cur[-1])
+            if cur and cur[0] == i - k:
+                cur.popleft()
+            while cur and nums[cur[-1]] <= nums[i]:
+                cur.pop()
+            cur.append(i)
+            ans.append(nums[cur[0]])
         return ans
