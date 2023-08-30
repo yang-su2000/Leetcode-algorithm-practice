@@ -4,15 +4,13 @@ class Solution {
 public:
     ll minimumReplacement(vector<int>& nums) {
         int n = nums.size();
-        stack<int> s;
         ll ans = 0;
-        for (int i=n-1; i>=0; i--) {
-            if (!s.empty() and nums[i] > s.top()) {
-                int val = (nums[i] + s.top() - 1) / s.top();
+        for (int i=n-2; i>=0; i--) {
+            if (nums[i] > nums[i+1]) {
+                int val = (nums[i] + nums[i+1] - 1) / nums[i+1];
                 ans += val - 1;
-                s.push(nums[i] / val);
-                // cout << nums[i] << " " << ans << endl;
-            } else s.push(nums[i]);
+                nums[i] /= val;
+            }
         }
         return ans;
     }
