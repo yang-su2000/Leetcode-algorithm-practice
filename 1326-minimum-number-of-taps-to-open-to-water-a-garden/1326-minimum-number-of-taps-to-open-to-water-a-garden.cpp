@@ -1,19 +1,23 @@
 class Solution {
 public:
     int minTaps(int n, vector<int>& ranges) {
-        int mval = 1e5;
-        vector<int> dp(n + 1, mval);
-        dp[0] = 0;
+        vector<int> p(n + 1);
         for (int i=0; i<=n; i++) {
-            int val = dp[max(i - ranges[i], 0)];
-            for (int j=i-ranges[i]; j<=i+ranges[i]; j++) {
-                if (j < 0 or j > n) continue;
-                dp[j] = min(dp[j], 1 + val);
-            }
-            // for (int i=0; i<=n; i++) cout << dp[i] << " ";
-            // cout << endl;
+            int l = max(0, i - ranges[i]);
+            int r = min(n, i + ranges[i]);
+            p[l] = max(p[l], r);
         }
-        if (dp[n] == mval) return -1;
-        return dp[n];
+        int r2 = 0;
+        int r = 0;
+        int ans = 0;
+        for (int l=0; l<=n; l++) {
+            if (l > r2) return -1;
+            if (l > r) {
+                ans++;
+                r = r2;
+            }
+            r2 = max(r2, p[l]);
+        }
+        return ans;
     }
 };
