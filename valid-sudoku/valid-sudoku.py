@@ -13,14 +13,15 @@ class Solution:
                 num = board[i][j]
                 if num == '.':
                     continue
-                if c[num] == 1:
+                if c[num]:
                     return False
                 c[num] += 1
     
-        # each sub cell
+        # each big cell
         for I in range(3):
             for J in range(3):
-                c = Counter()
+                c = Counter() # == defaultdict(int)
+                # each small cell
                 for i in range(3):
                     i += 3 * I
                     for j in range(3):
@@ -28,7 +29,7 @@ class Solution:
                         num = board[i][j]
                         if num == '.':
                             continue
-                        if c[num] == 1:
+                        if c[num]:
                             return False
                         c[num] += 1
         
