@@ -14,7 +14,6 @@ class Solution:
                 if num == '.':
                     continue
                 if c[num] == 1:
-                    print(2)
                     return False
                 c[num] += 1
     
@@ -22,13 +21,14 @@ class Solution:
         for I in range(3):
             for J in range(3):
                 c = Counter()
-                for i in range(I * 3, I * 3 + 3):
-                    for j in range(J * 3, J * 3 + 3):
+                for i in range(3):
+                    i += 3 * I
+                    for j in range(3):
+                        j += 3 * J
                         num = board[i][j]
                         if num == '.':
                             continue
                         if c[num] == 1:
-                            print(3)
                             return False
                         c[num] += 1
         
