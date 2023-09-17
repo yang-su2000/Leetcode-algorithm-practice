@@ -1,1 +1,5 @@
-​
+- never seen this approach to do graph-dp
+- essentially, when **unlimited visit time** happens
+- key 1: need a **manual memo** to avoid recursion
+- key 2: need a “knapsack-like" state update to encode both future visited and future **unvisited**
+- or just floyd-warshell then do the normal graph-dp (recommended)
