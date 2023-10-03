@@ -9,11 +9,15 @@ class Trie:
         t.count += 1
 
     def countWordsEqualTo(self, word: str) -> int:
-        t = self.locate(word, 0)
+        t = self.locate(word, 0, add=False)
+        if not t:
+            return 0
         return t.count
 
     def countWordsStartingWith(self, prefix: str) -> int:
-        t = self.locate(prefix, 0)
+        t = self.locate(prefix, 0, add=False)
+        if not t:
+            return 0
         return t.countSum()
         
     def countSum(self):
@@ -26,11 +30,13 @@ class Trie:
         t = self.locate(word, 0)
         t.count -= 1
     
-    def locate(self, word, idx):
+    def locate(self, word, idx, add=True):
         if idx == len(word):
             return self
         c = word[idx]
         if c not in self.childs:
+            if not add:
+                return None
             self.childs[c] = Trie()
         return self.childs[c].locate(word, idx + 1)
 
