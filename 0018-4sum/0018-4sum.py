@@ -1,25 +1,26 @@
 class Solution:
     def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
-        n = len(nums)
         nums.sort()
-        ans = set()
-        for i in range(n):
-            seen = defaultdict(set) # sum2 -> (a, b)
-            for l in range(i):
-                for l2 in range(l + 1, i):
-                    a, b = nums[l], nums[l2]
-                    sum2 = a + b
-                    seen[sum2].add((a, b))
-            seen2 = defaultdict(set)
-            for r in range(i, n):
-                for r2 in range(r + 1, n):
-                    c, d = nums[r], nums[r2]
-                    sum2 = c + d
-                    seen2[sum2].add((c, d))
-            for v, sets in seen.items():
-                if target - v in seen2:
-                    sets2 = seen2[target - v]
-                    for a, b in sets:
-                        for c, d in sets2:
-                            ans.add(tuple(sorted([a, b, c, d])))
-        return [list(t) for t in ans]
+        def kSum(nums, target, k):
+            if k == 2:
+                ret = []
+                l = 0
+                r = len(nums) - 1
+                while l < r:
+                    csum = nums[l] + nums[r]
+                    if csum < target or (l > 0 and nums[l] == nums[l-1]):
+                        l += 1
+                    elif csum > target or (r < len(nums)-1 and nums[r] == nums[r+1]):
+                        r -= 1
+                    else:
+                        ret.append([nums[l], nums[r]])
+                        l += 1
+                        r -= 1
+                return ret
+            ret = []
+            for i in range(len(nums)):
+                if i == 0 or nums[i] != nums[i-1]:
+                    for cur in kSum(nums[i+1:], target - nums[i], k - 1):
+                        ret.append([nums[i]] + cur)
+            return ret
+        return kSum(nums, target, 4)
