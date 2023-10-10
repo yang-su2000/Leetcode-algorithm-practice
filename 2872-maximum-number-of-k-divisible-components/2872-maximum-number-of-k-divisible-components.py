@@ -15,10 +15,7 @@ class Solution:
                 ret += dfs(child, node)
             if ret % k == 0:
                 ans += 1
-                ret = 0
             return ret
         
         dfs(0, -1)
         return ans
-        
-        
