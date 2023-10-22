@@ -8,7 +8,7 @@ class Solution:
         for i in range(1, n):
             while st and st[0] < i - k:
                 st.popleft()
-            dp[i] = max(0, dp[st[0]] if st else 0) + nums[i]
+            dp[i] = max(0, dp[st[0]]) + nums[i]
             while st and dp[st[-1]] <= dp[i]:
                 st.pop()
             st.append(i)
