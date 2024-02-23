@@ -1,20 +1,20 @@
 class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
-        ans = set()
+        ans = []
         n = len(nums)
+        d = Counter(nums)
         
-        def bt(cur, taken, count):
-            if count == n:
-                ans.add(tuple(cur))
+        def bt(cur):
+            if len(cur) == n:
+                ans.append(cur.copy())
                 return
-            for i in range(n):
-                if not taken[i]:
-                    taken[i] = True
-                    cur.append(nums[i])
-                    bt(cur, taken, count + 1)
-                    taken[i] = False
+            for key in d.keys():
+                if d[key]:
+                    d[key] -= 1
+                    cur.append(key)
+                    bt(cur)
+                    d[key] += 1
                     cur.pop()
         
-        bt([], [False] * n, 0)
-        ans = [list(t) for t in ans]
+        bt([])
         return ans
