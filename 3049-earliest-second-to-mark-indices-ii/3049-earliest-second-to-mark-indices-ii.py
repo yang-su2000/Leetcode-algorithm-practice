@@ -2,12 +2,12 @@ class Solution:
     def earliestSecondToMarkIndices(self, nums: List[int], changeIndices: List[int]) -> int:
         n = len(nums)
         m = len(changeIndices)
+        first = [-1] * n
+        for i in range(m-1, -1, -1):
+            idx = changeIndices[i] - 1
+            first[idx] = i
         
         def solve(bound):
-            first = [-1] * n
-            for i in range(bound, -1, -1):
-                idx = changeIndices[i] - 1
-                first[idx] = i
             cur = 0 # store index used to do normal decrement or mark
             mark = [False] * n
             pq = [] # (nums[i], idx)
