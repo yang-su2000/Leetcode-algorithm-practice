@@ -11,13 +11,9 @@ class Solution:
                     dp2[val + i] += count
                     dp2[val - i] += count
                 dp = dp2
-            # print(dp)
             return dp[ans] > 0
         
         for ans in range(101):
-            for i in range(len(stones)):
-                if stones[i] >= ans:
-                    # print(ans, i)
-                    if solve(ans):
-                        return ans
+            if solve(ans):
+                return ans
         
