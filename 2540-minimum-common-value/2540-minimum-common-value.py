@@ -3,14 +3,10 @@ class Solution:
         i1, i2 = 0, 0
         n1, n2 = len(nums1), len(nums2)
         while i1 < n1 and i2 < n2:
-            while i1 < n1 and nums1[i1] < nums2[i2]:
+            if nums1[i1] < nums2[i2]:
                 i1 += 1
-            if i1 == n1:
-                break
-            while i2 < n2 and nums1[i1] > nums2[i2]:
+            elif nums1[i1] > nums2[i2]:
                 i2 += 1
-            if i2 == n2:
-                break
-            if nums1[i1] == nums2[i2]:
+            else:
                 return nums1[i1]
         return -1
