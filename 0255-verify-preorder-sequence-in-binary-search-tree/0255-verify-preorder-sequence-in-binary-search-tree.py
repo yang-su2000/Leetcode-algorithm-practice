@@ -4,7 +4,7 @@ class Solution:
         st = []
         for val in preorder:
             while st and st[-1] < val:
-                lo = max(lo, st.pop())
+                lo = st.pop()
             if val < lo:
                 return False
             st.append(val)
